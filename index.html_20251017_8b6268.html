@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentNexus - Your Central Hub for Academic Success</title>
+    <style>
+        :root {
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #00b4db;
+            --light: #f8f9ff;
+            --dark: #1a1a2e;
+            --success: #38b000;
+            --warning: #ff9e00;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            font-size: 2.2rem;
+            background: rgba(255, 255, 255, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #e0f7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover:after {
+            width: 80%;
+            left: 10%;
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            border: 2px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0 5rem;
+            background: var(--gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0 V100 Q500,80 1000,100 V0 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h2 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            background: white;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 18px 25px;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-bar button {
+            padding: 0 30px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .search-bar button:hover {
+            background-color: #0099c3;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.2rem;
+            font-weight: 800;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.8rem;
+            display: inline-block;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--dark);
+        }
+        
+        /* Resources Section */
+        .resources {
+            padding: 6rem 0;
+            background-color: #f5f7ff;
+        }
+        
+        .resource-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background-color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            color: #555;
+        }
+        
+        .tab-btn.active {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 6px 20px rgba(106, 17, 203, 0.3);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .resource-card {
+            background-color: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .resource-img {
+            height: 180px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .resource-img:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.1));
+        }
+        
+        .resource-content {
+            padding: 1.8rem;
+        }
+        
+        .resource-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+            font-size: 1.3rem;
+        }
+        
+        .resource-content p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            gap: 12px;
+            color: var(--secondary);
+        }
+        
+        /* Premium Section */
+        .premium {
+            padding: 6rem 0;
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .premium:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0 Q500,50 1000,0 V100 H0 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        .premium h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .premium p {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .premium-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .premium-feature {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem 2rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .premium-feature:hover {
+            transform: translateY(-8px);
+        }
+        
+        .premium-feature h3 {
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+        }
+        
+        .pricing {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .price-card {
+            background-color: white;
+            color: var(--dark);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            width: 320px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .price-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--gradient);
+        }
+        
+        .price-card.popular {
+            transform: scale(1.05);
+            border: 2px solid var(--accent);
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .price-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .price-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .price-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: #666;
+            font-weight: normal;
+        }
+        
+        .price-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+        }
+        
+        .price-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .price-features li:before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 5rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.8rem;
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            gap: 12px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.6rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+            
+            .price-card.popular {
+                transform: scale(1);
+            }
+            
+            .price-card.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .features-grid, .resources-grid, .premium-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .price-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.9rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                border-radius: 16px;
+            }
+            
+            .search-bar input, .search-bar button {
+                width: 100%;
+                border-radius: 0;
+            }
+            
+            .search-bar input {
+                border-radius: 16px 16px 0 0;
+            }
+            
+            .search-bar button {
+                border-radius: 0 0 16px 16px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">🔗</div>
+                <h1>StudentNexus</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#premium">Premium</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button class="btn btn-outline">Log In</button>
+                <button class="btn btn-primary">Sign Up Free</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h2>The Central Hub for Student Success</h2>
+            <p>StudentNexus connects middle school, high school, and college students with everything they need to excel academically and prepare for their future.</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for study resources, tools, or help...">
+                <button>Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose StudentNexus?</h2>
+                <p>We provide everything students need in one centralized platform</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Study Resources</h3>
+                    <p>Access thousands of study guides, flashcards, and practice tests for all subjects and grade levels.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>Collaborative Learning</h3>
+                    <p>Connect with peers for study groups, collaborative projects, and peer-to-peer tutoring.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>Career Preparation</h3>
+                    <p>Explore career paths, build professional resumes, and find internship opportunities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Expert Tutoring</h3>
+                    <p>Get personalized help from qualified tutors in any subject, available 24/7.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📅</div>
+                    <h3>Smart Planner</h3>
+                    <p>Organize your schedule, track assignments, and never miss a deadline with our AI-powered planner.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💸</div>
+                    <h3>Student Deals</h3>
+                    <p>Exclusive discounts on software, textbooks, services, and more for verified students.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources" id="resources">
+        <div class="container">
+            <div class="section-title">
+                <h2>Resources For Every Level</h2>
+                <p>Tailored content for middle school, high school, and college students</p>
+            </div>
+            
+            <div class="resource-tabs">
+                <button class="tab-btn active" data-tab="middle">Middle School</button>
+                <button class="tab-btn" data-tab="high">High School</button>
+                <button class="tab-btn" data-tab="college">College</button>
+            </div>
+            
+            <div class="tab-content active" id="middle-tab">
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-img">📝</div>
+                        <div class="resource-content">
+                            <h3>Study Guides</h3>
+                            <p>Comprehensive guides for all middle school subjects with practice questions and explanations.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">🧮</div>
+                        <div class="resource-content">
+                            <h3>Math Help</h3>
+                            <p>Step-by-step explanations for algebra, geometry, and pre-calculus problems with video tutorials.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">🔬</div>
+                        <div class="resource-content">
+                            <h3>Science Projects</h3>
+                            <p>Ideas and instructions for science fair projects and experiments with safety guidelines.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">📖</div>
+                        <div class="resource-content">
+                            <h3>Reading Lists</h3>
+                            <p>Curated book recommendations for middle school reading levels with discussion guides.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="high-tab">
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-img">🎯</div>
+                        <div class="resource-content">
+                            <h3>Test Prep</h3>
+                            <p>SAT, ACT, and AP exam preparation materials with full-length practice tests and strategies.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">📋</div>
+                        <div class="resource-content">
+                            <h3>College Applications</h3>
+                            <p>Guides for writing essays, preparing applications, and finding scholarships.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">💻</div>
+                        <div class="resource-content">
+                            <h3>Coding Resources</h3>
+                            <p>Learn programming basics with interactive tutorials and real-world projects.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">🌍</div>
+                        <div class="resource-content">
+                            <h3>Advanced Courses</h3>
+                            <p>AP and honors course materials for advanced high school students.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="college-tab">
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <div class="resource-img">📊</div>
+                        <div class="resource-content">
+                            <h3>Major Guides</h3>
+                            <p>Comprehensive resources for different college majors and career paths.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">💼</div>
+                        <div class="resource-content">
+                            <h3>Internship Finder</h3>
+                            <p>Discover internship opportunities tailored to your field of study.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">📄</div>
+                        <div class="resource-content">
+                            <h3>Research Help</h3>
+                            <p>Tools and guides for academic research, citations, and paper writing.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <div class="resource-img">🏠</div>
+                        <div class="resource-content">
+                            <h3>Student Life</h3>
+                            <p>Resources for budgeting, housing, mental health, and campus life.</p>
+                            <a href="#" class="resource-link">Explore Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Section -->
+    <section class="premium" id="premium">
+        <div class="container">
+            <h2>Upgrade to StudentNexus Premium</h2>
+            <p>Get unlimited access to all features, personalized learning paths, and ad-free experience</p>
+            
+            <div class="premium-features">
+                <div class="premium-feature">
+                    <h3>Unlimited Resources</h3>
+                    <p>Access all study materials, practice tests, and guides without any restrictions.</p>
+                </div>
+                <div class="premium-feature">
+                    <h3>Personalized Learning</h3>
+                    <p>AI-powered recommendations based on your learning style and progress.</p>
+                </div>
+                <div class="premium-feature">
+                    <h3>Ad-Free Experience</h3>
+                    <p>Focus on your studies without distractions from advertisements.</p>
+                </div>
+            </div>
+            
+            <div class="pricing">
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>Monthly</h3>
+                        <div class="price">$9.99 <span>/month</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li>All Premium Features</li>
+                        <li>Cancel Anytime</li>
+                        <li>Basic Support</li>
+                        <li>5GB Cloud Storage</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">Get Started</button>
+                </div>
+                
+                <div class="price-card popular">
+                    <div class="price-header">
+                        <h3>Yearly</h3>
+                        <div class="price">$79.99 <span>/year</span></div>
+                        <p style="color: var(--success); font-weight: 600;">Save 33%</p>
+                    </div>
+                    <ul class="price-features">
+                        <li>All Premium Features</li>
+                        <li>Priority Support</li>
+                        <li>Exclusive Content</li>
+                        <li>Early Access to New Features</li>
+                        <li>20GB Cloud Storage</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">Get Started</button>
+                </div>
+                
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>Family Plan</h3>
+                        <div class="price">$149.99 <span>/year</span></div>
+                        <p>For up to 4 students</p>
+                    </div>
+                    <ul class="price-features">
+                        <li>All Premium Features</li>
+                        <li>Separate Profiles</li>
+                        <li>Parent Dashboard</li>
+                        <li>Progress Tracking</li>
+                        <li>50GB Cloud Storage</li>
+                    </ul>
+                    <button class="btn btn-primary" style="width: 100%;">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>StudentNexus</h3>
+                    <p>Your central hub for academic success, career preparation, and student life.</p>
+                    <div class="social-links">
+                        <a href="#">f</a>
+                        <a href="#">t</a>
+                        <a href="#">in</a>
+                        <a href="#">ig</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Study Materials</a></li>
+                        <li><a href="#">Tutoring</a></li>
+                        <li><a href="#">Career Center</a></li>
+                        <li><a href="#">Student Discounts</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get study tips and student deals delivered to your inbox.</p>
+                    <div class="search-bar" style="margin-top: 15px; border-radius: 12px;">
+                        <input type="email" placeholder="Your email">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 StudentNexus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality for resources section
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons and contents
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    tabContents.forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Show corresponding content
+                    const tabId = btn.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.add('active');
+                });
+            });
+            
+            // Simple search functionality
+            const searchInput = document.querySelector('.search-bar input');
+            const searchBtn = document.querySelector('.search-bar button');
+            
+            searchBtn.addEventListener('click', () => {
+                if (searchInput.value.trim() !== '') {
+                    alert(`Searching for: ${searchInput.value}`);
+                    // In a real implementation, this would redirect to search results
+                }
+            });
+            
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    searchBtn.click();
+                }
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        if(targetElement) {
+                            window.scrollTo({
+                                top: targetElement.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
